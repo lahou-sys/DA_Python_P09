@@ -1,0 +1,81 @@
+{% load static %}
+
+<div class="snippet_body">
+
+    <div class="snippet_header">
+
+        <div class="snippet_user">
+            {% if user.get_username == post.user.username %}
+                <label>Vous avez publié une critique</label>
+            {% else %}
+                <label>{{post.user.username}} a publié une critique</label>
+            {% endif %}
+        </div>
+
+        <div class="snippet_date">
+            {{post.time_created|date:"h:m, d M Y"}}
+        </div>
+    </div>
+
+    <div class="snippet_title">
+        {{post.headline}} - 
+
+        <div class="wrap_star">
+            {% for _ in post.rating_full_star %}
+                <input type="image" src="{% static 'reviews\img\full_star.png' %}" alt="Full Star" class="star"/>
+            {% endfor %}
+
+            {% for _ in post.rating_empty_star %}
+                <input type="image" src="{% static 'reviews\img\empty_star.png' %}" alt="Empty Star" class="star"/>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="snippet_description">
+        {{post.body}}
+    </div>
+
+    
+    <div class="include_snippet_body">
+
+        <div class="snippet_header">
+            <div class="snippet_user">
+                <label>Ticket - {{post.ticket.user.username}}</label>
+            </div>
+        </div>
+
+        <div class="snippet_title">
+            {{post.ticket.title}}
+        </div>
+
+        <div class="snippet_description">
+            {{post.ticket.description}}
+        </div>
+
+        {% if post.ticket.image %}
+            <div>
+                <img src={{ post.ticket.image.url }}>
+            </div>
+        {% endif %}
+    </div>
+
+    {% if update %}
+        <div class="wrap_button_in_line_right">
+            <form action="{% url 'reviews:posts' %}" method="POST">
+                {% csrf_token %}
+                <div class="wrap_button_inline_block">
+                    <input type="submit" value="Modifier">
+                    <input type="hidden" name="review_pk" value={{post.pk}}>
+                </div>
+            </form>
+            <form action="{% url 'reviews:posts' %}" method="POST">
+                {% csrf_token %}
+                <div class="wrap_button_inline_block">
+                    <input type="submit" value="Supprimer">
+                    <input type="hidden" name="delete_review" value={{post.pk}}>
+                    <input type="hidden" name="review_pk" value={{post.pk}}>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+</div>

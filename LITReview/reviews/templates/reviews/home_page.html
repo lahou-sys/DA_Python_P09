@@ -1,0 +1,34 @@
+{% extends 'reviews/base.html' %}
+
+
+{% block content %}
+
+    <div id="home_page">
+        <div class="home_page_format">
+            <form action="{% url 'reviews:registration' %}" method="get">
+                {% csrf_token %}
+                <p>
+                    <label>Inscrivez-vous maintenant</label>
+                </p>
+                <p>
+                    <input type="submit" value="S'inscrire">
+                </p>
+            </form>
+        </div>
+
+        <div class="home_page_format">
+            <form action="{% url 'reviews:home_page' %}" method="post">
+                {% csrf_token %}
+                <p>
+                    <label>Connectez-vous</label>
+                </p>
+                {{ form.username.errors }}
+                {{ form }}
+                <p>
+                    <input type="submit" value="Se connecter">
+                </p>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

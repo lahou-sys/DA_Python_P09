@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>LITReview</title>
+        <link rel="shortcut icon" href="{% static 'reviews/img/LITReview.png' %}" />
+        <link rel="stylesheet" href="{% static 'reviews/css/styles.css' %}"/>
+    </head>
+
+    <body id="bloc_page">
+            <!-- Header -->
+            <header>
+                <div id="logo">
+                    <img src="{% static 'reviews\img\LITReview.png' %}" alt="LITReview Logo" />
+                </div>
+                <div id="title">
+                    <h1>LITReview</h1>
+                </div>
+
+                <!-- Navigation-->
+                <div class="navigation">
+                    {% block navigation %}{% endblock %}
+                </div>
+            </header>
+
+        <!-- Child zone -->
+        <div class="container">
+            <div class="row">
+                <div class="box">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+          </div>
+
+        {% block footer %}
+            <!-- Footer-->
+            <footer>
+                <div class="footer-text">
+                    <p>
+                    Copyright &copy; LITReview 2022
+                    </p>
+                </div>
+            </footer>
+        {% endblock %}
+    </body>
+</html>

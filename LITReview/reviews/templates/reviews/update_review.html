@@ -1,0 +1,102 @@
+{% extends 'reviews/base_with_navbar.html' %}
+
+
+{% block content %}
+
+    {% comment %}
+        Header.
+    {% endcomment %}
+    <div class="review_header_wrap">
+        <div class="review_header">
+            <p>
+                <label>Modifier une critique</label>
+            </p>
+        </div>
+    </div>
+
+
+    {% comment %}
+        Form display.
+    {% endcomment %}
+    <form action="{% url 'reviews:update_review' %}" method="post">
+        {% csrf_token %}
+        <div class="review_page">
+            <div>
+
+                {% if display_ticket %}
+
+                    {% include 'reviews/ticket_snippet.html' with post=form.ticket %}
+
+                {% else %}
+
+                    <div class="review_page_section_title">
+                        <p>
+                            <label>Livre/Article</label>
+                        </p>
+                    </div>
+                    <div class="review_page_form_title">
+                        {{ form.title.errors }}
+                        <label class="review_page_form_label" for="{{ form.title.id_for_label }}">Titre</label>
+                        {{ form.title }}
+                    </div>
+                    <div class="description">
+                        {{ form.description.errors }}
+                        <label class="review_page_form_label" for="{{ form.description.id_for_label }}">Description</label>
+                        {{ form.description }}
+                    </div>
+                    <div class="image_download_label">
+                        <label class="review_page_form_label" for="{{ form.image_download.id_for_label }}">Image</label>
+                    </div>
+                    <div class="image_download">
+                        {{ form.image_download.errors }}
+                        {{ form.image_download }}
+                        <label class="input_button" for="{{ form.image_download.id_for_label }}">Télécharger fichier</label>
+                    </div>
+
+                {% endif %}
+
+            </div>
+        </div>
+
+        <div class="review_page_bottom">
+            <div class="review_page_section_title">
+                <p>
+                    <label>Critique</label>
+                </p>
+            </div>
+            <div class="review_page_form_title">
+                {{ form.headline.errors }}
+                <label class="review_page_form_label" for="{{ form.headline.id_for_label }}">Titre</label>
+                {{ form.headline }}
+            </div>
+            <div class="review_page_form_title">
+                {{ form.rating.errors }}
+                <label class="review_page_form_label" for="{{ form.rating.id_for_label }}">Note</label>
+                {{ form.rating }}
+            </div>
+            <div class="body">
+                {{ form.body.errors }}
+                <label class="review_page_form_label" for="{{ form.body.id_for_label }}">Commentaire</label>
+                {{ form.body }}
+            </div>
+            <div class="wrap_button_bottom_right">
+                <p>
+                    <input type="submit" value="Envoyer">
+                    <input type="hidden" name="review_pk" value={{review_pk}}>
+                </p>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block footer %}
+    <!-- Footer-->
+    <div class="footer">
+        <div class="footer-text">
+            <p>
+                Copyright &copy; LITReview 2022
+            </p>
+        </div>
+    </footer>
+{% endblock %}

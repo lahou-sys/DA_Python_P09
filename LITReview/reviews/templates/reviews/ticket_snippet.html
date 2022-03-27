@@ -1,0 +1,67 @@
+{% load static %}
+
+<div class="snippet_body">
+
+    <div class="snippet_header">
+
+        <div class="snippet_user">
+            {% if user.get_username == post.user.username %}
+                <label>Vous avez demandé une critique</label>
+            {% else %}
+                <label>{{post.user.username}} a demandé une critique</label>
+            {% endif %}
+        </div>
+
+        <div class="snippet_date">
+            {{post.time_created|date:"h:m, d M Y"}}
+        </div>
+    </div>
+
+    <div class="snippet_title">
+        {{post.title}}
+    </div>
+
+    <div class="snippet_description">
+        {{post.description}}
+    </div>
+
+    {% if post.image %}
+        <div>
+            <img src={{post.image.url}}>
+        </div>
+    {% endif %}
+
+    {% if update %}
+        <div class="wrap_button_in_line_right">
+            <form action="{% url 'reviews:posts' %}" method="POST">
+                {% csrf_token %}
+                <div class="wrap_button_inline_block">
+                    <input type="submit" value="Modifier">
+                    <input type="hidden" name="ticket_pk" value={{post.pk}}>
+                </div>
+            </form>
+            <form action="{% url 'reviews:posts' %}" method="POST">
+                {% csrf_token %}
+                <div class="wrap_button_inline_block">
+                    <input type="submit" value="Supprimer">
+                    <input type="hidden" name="delete_ticket" value={{post.pk}}>
+                    <input type="hidden" name="ticket_pk" value={{post.pk}}>
+                </div>
+            </form>
+        </div>
+    {% else %}
+        {% if not post.already_reviewed %}
+            <div class="wrap_button_row_reverse">
+                <form action="{% url 'reviews:create_review' %}" method="GET">
+                    {% csrf_token %}
+                    <div>
+                        <p>
+                            <input type="submit" value="Créer une critique">
+                            <input type="hidden" name="ticket_pk" value={{post.pk}}>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>

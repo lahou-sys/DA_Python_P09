@@ -1,0 +1,15 @@
+{% extends 'reviews/base.html' %}
+
+{% block navigation %}
+
+    <!-- Navigation-->                
+    <nav>
+        <ul>
+            <li><a href="{% url 'reviews:feed' %}">Flux</a></li>
+            <li><a href="{% url 'reviews:posts' %}">Post</a></li>
+            <li><a href="{% url 'reviews:subscription' %}">Abonnements</a></li>
+            <li><a href="{% url 'reviews:disconnect' %}">Se déconnecter</a></li>
+        </ul>
+    </nav>
+
+{% endblock %}

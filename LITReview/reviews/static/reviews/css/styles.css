@@ -1,0 +1,605 @@
+/* Body */
+
+html {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: gray;
+    background-repeat: round;
+}
+
+#bloc_page {
+    min-height: 100vh;
+}
+
+h1 {
+    display: flex;
+    font-size: 2em;
+    justify-content: center;
+    text-align: center;
+}
+
+h2 {
+    display: flex;
+    font-size: 1.5em;
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+/* Header */
+
+header {
+    font-family: Dayrom, serif;
+    background: whitesmoke;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    color:gray;
+    border-bottom: 2px solid black;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    align-items: center;
+    margin: 0.5em 2em;
+    font-size: 4em;
+    position:relative;
+    justify-content: center;
+    text-align: center;
+}
+
+#logo {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    margin: 1.3em;
+}
+
+#logo img {
+    width: 90px;
+    height: 90px;
+    margin: auto 1em;
+    align-items: center;
+}
+
+
+/* Navigation */
+
+nav {
+    position: absolute;
+    align-items: flex-end;
+    right: 0;
+    bottom: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    padding-right: 1em;
+}
+
+nav li {
+    margin-right: 15px;
+}
+
+nav a {
+    font-size: 1.3em;
+    color: gray;
+    padding-bottom: 3px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #760001;
+    border-bottom: 3px solid #760001;
+}
+
+
+/* Home Page */
+
+#home_page {
+    display: flex;
+    position: relative;
+    margin: 0 10%;
+    font-size: 2.3em;
+    font-weight: bold;
+    justify-content: space-around;
+    top: 5em;
+    padding-bottom: 350px;
+}
+
+.home_page_format {
+    display: block;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    min-width: 350px;
+    max-width: 400px;
+}
+
+/* Registration Page */
+
+#registration_page {
+    display: flex;
+    position: relative;
+    font-size: 2.3em;
+    font-weight: bold;
+    justify-content: space-around;
+    top: 2em;
+}
+
+.registration_page_format {
+    display: block;
+    text-align: center;
+    max-width: 600px;
+}
+
+
+
+/* feed Page */
+
+#feed_page {
+    display: flex;
+    position: relative;
+    font-size: 2.3em;
+    font-weight: bold;
+    justify-content: space-around;
+    top: -1em;
+}
+
+.feed_page_format {
+    display: block;
+    text-align: center;
+}
+
+
+
+/* snippet */
+
+.snippet_body, .include_snippet_body {
+    margin: 50px;
+    padding: 30px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border: 3px solid gray;
+    font-size: x-large;
+}
+
+.snippet_header {
+    width: 100%;
+    min-height: 40px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.snippet_user {
+    width: 70%;
+    min-height: 30px;
+    padding: 0 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.snippet_title {
+    width: 92%;
+    min-height: 30px;
+    padding: 0 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.snippet_date {
+    position: relative;
+    right: 0;
+    top: 10px;
+}
+
+.snippet_description {
+    width: 92%;
+    text-align: justify;
+    padding: 0 2%;
+    margin-bottom: 2%;
+}
+
+
+/* Create or ask for review Page */
+
+.review_page {
+    display: block;
+    position: relative;
+    font-size: 1.2em;
+    font-weight: bold;
+    top: 0;
+    width: 80%;
+    min-width: 1200px;
+    left: 8%;
+    bottom: 100px;
+    border: 3px solid gray;
+    padding: 1%;
+    padding-bottom: 2%;
+}
+
+.review_header {
+    font-size: 2.5em;
+    font-weight: bold;
+    position: relative;
+}
+
+.review_header_wrap {
+    text-align: center;
+}
+
+.review_page_form_title {
+    width: 92%;
+    height: 30px;
+    padding: 0 2%;
+    color: black;
+    margin-bottom: 6%;
+}
+
+.review_page_form_label {
+    font-size: 1.4em;
+    text-align: left;
+    color: gray;
+}
+
+.description, .body {
+    width: 92%;
+    height: 200px;
+    padding: 0 2%;
+    color: black;
+    margin-top: 7%;
+    margin-bottom: 6%;
+}
+
+.image_download_label {
+    font-size: 1.4em;
+    width: 10%;
+    height: 50px;
+    padding: 0 2%;
+}
+
+label[for='id_image_download'] {
+    font-size: 1em;
+    text-align: left;
+    color: gray;
+    font-weight: 900;
+}
+
+.image_download {
+    padding: 10px 5%;
+}
+
+#id_image_download {
+    display: none;
+}
+
+
+/* Create review Page */
+
+.review_page_bottom {
+    display: block;
+    position: relative;
+    font-size: 1.2em;
+    font-weight: bold;
+    top: 0;
+    width: 80%;
+    min-width: 1200px;
+    left: 8%;
+    bottom: 100px;
+    border: 3px solid gray;
+    border-top: 0;
+    padding: 1%;
+}
+
+.review_page_section_title {
+    text-align: left;
+    width: 92%;
+    padding: 0;
+    font-size: 1.5em;
+}
+
+input#id_rating {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 700px;
+    height: 20px;
+}
+
+.rating {
+    display: inline-flex;
+    list-style-type: none;
+    padding: 2% 30% 0 0;
+    margin: 0;
+    min-width: 75%;
+    max-width: 80%;
+    height: 15px;
+    justify-content: space-around;
+    text-align: center;
+    color: gray;
+}
+
+.create_review_wrap_button {
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    width: 800px;
+    height: 400px;
+}
+
+.create_review_wrap_button_top {
+    top: 0;
+    left: 0;
+}
+
+
+/* Ask for review Page */
+
+#create_ticket_page_format input[type=text], input[type=password] {
+    padding: 10px 70px;
+    margin: 4px 2px;
+}
+
+.create_ticket_wrap_button {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    width: 800px;
+    height: 400px;
+}
+
+.create_ticket_wrap_button_top {
+    position: relative;
+    top: 0;
+    left: 5%;
+}
+
+
+/* Subscription Page */
+
+.search_area {
+    display: inline-flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    left: 10%;
+    width: 80%;
+    height: 40px;
+}
+
+
+/* Content */
+
+.information {
+    display: flex;
+    position: relative;
+    margin: 0 30%;
+    font-size: 2em;
+    font-weight: bold;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.h1 {
+    display: flex;
+    position: relative;
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    top: 1em;
+}
+
+li::marker {
+    margin: 0;
+    font-weight: normal;
+    text-align: left;
+    font-size: small;
+}
+
+table {
+    background-color: whitesmoke;
+    border: 1px solid gray;
+    padding: 10px 60px;
+    margin: 20px 2px;
+    font-size: 1em;
+    text-decoration: none;
+    text-indent: 10px;
+    width: 80%;
+    left: 10%;
+    position: relative;
+}
+
+td {
+    width: 60%;
+}
+
+.subscribe_information {
+    display: flex;
+    position: relative;
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    justify-content: space-around;
+    text-align: center;
+}
+
+
+/* Footer */
+
+footer {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    background:whitesmoke;
+    border-top: 2px solid black;
+    margin-top: 20px;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    min-width: 100%;
+}
+
+.footer {
+    display: block;
+    position: relative;
+    bottom: 0;
+    background:whitesmoke;
+    border-top: 2px solid black;
+    margin-top: 20px;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    min-width: 100%;
+}
+
+.footer-text p {
+    align-items: center;
+    text-align: center;
+    margin: 0.5em;
+    position:relative;
+}
+
+
+/* Widget */
+
+input[type=text], input[type=password], #id_description, #id_body {
+    background-color:whitesmoke;
+    border: 1px solid gray;
+    padding: 10px 30px;
+    margin: 4px 2px;
+    cursor: text;
+    font-size: 1em;
+    text-decoration: none;
+    text-align: justify;
+    text-indent: 10px;
+    white-space:normal;
+    width: 100%;
+}
+
+input[type=button], input[type=submit], input[type=file], .input_button {
+    background-color:whitesmoke;
+    border: 1px solid gray;
+    padding: 10px 50px;
+    text-decoration: none;
+    box-shadow: 10px 5px 5px gray;
+    margin: 4px 2px;
+    cursor: pointer;
+    color: gray;
+    font-weight: 900;
+    font-size: 0.8em;
+}
+
+button a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* Other */
+
+.wrap_button {
+    margin: 10px;
+}
+
+.wrap_button_row {
+    margin: 10px;
+    display: flex;
+    flex-flow: row;
+}
+
+.wrap_button_row_reverse {
+    margin: 10px;
+    display: flex;
+    flex-flow: row-reverse;
+}
+
+.wrap_button_right {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    right: 0;
+}
+
+.wrap_button_in_line_right {
+    display: inline-flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.wrap_button_inline_block {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.wrap_button_bottom_right {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    bottom:0;
+    right: 5%;
+}
+
+.in_line {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+}
+
+.in_reverse_line {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    position: relative;
+}
+
+.errorlist {
+    color: red;
+    font-size: medium;
+    list-style-type: none;
+    margin: 10px 0 0;
+    padding: 0;
+    height: 35px;
+}
+
+.message {
+    color: blue;
+    font-size: larger;
+    text-align: center;
+    list-style-type: none;
+    margin: 10px 0 0;
+    padding: 0;
+    height: 50px;
+}
+
+img {
+    width: 200px;
+    height: 300px;
+    margin: 20px 0 0 90px;
+}
+
+.display_image {
+    margin: 20px 90px;
+}
+
+.star {
+    width: 40px;
+    margin: 0 10px;
+    vertical-align: middle;
+}
+
+.wrap_star {
+    display: inline-block;
+}

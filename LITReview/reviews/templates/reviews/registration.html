@@ -1,0 +1,37 @@
+{% extends 'reviews/base.html' %}
+
+
+{% block content %}
+
+    <div id="registration_page">
+        <div class="registration_page_format">
+            <form action="{% url 'reviews:registration' %}" method="post">
+                {% csrf_token %}
+
+                <div>
+                    <p>
+                        <label>Inscrivez-vous</label>
+                    </p>
+                    {{ form }}
+                </div>
+
+                <div class="in_reverse_line">
+                    <div class="wrap_button">
+                        <p>
+                            <input type="submit" value="S'inscrire">
+                        </p>
+                    </div>
+                    <div class="wrap_button">
+                        <p>
+                            <button type="button" class="input_button">
+                                <a href="{% url 'reviews:home_page' %}">Retourner</a>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

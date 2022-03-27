@@ -1,0 +1,86 @@
+
+{% extends 'reviews/base_with_navbar.html' %}
+
+
+{% block content %}
+    {% comment %}
+        This message appears if a ticket has been created.
+    {% endcomment %}
+    {% if message == 'save_new_ticket' %}
+        <div class="message">
+            <p>
+                Votre nouveau ticket a été créé.
+            </p>
+        </div>
+    {% comment %}
+        This message appears if a reveiw has been created.
+    {% endcomment %}
+    {% elif message == 'save_new_review' %}
+        <div class="message">
+            <p>
+                Votre nouvelle critique a été créé.
+            </p>
+        </div>
+    {% endif %}
+
+    {% comment %}
+        Add buttons on the top of the feed page.
+    {% endcomment %}
+    <div id="feed_page">
+        <div class="feed_page_format">
+            <div class="in_line">
+                <div class="wrap_button">
+                    <p>
+                        <button type="button" class="input_button">
+                            <a href="{% url 'reviews:create_ticket' %}">Demander une critique</a>
+                        </button>
+                    </p>
+                </div>
+                <div class="wrap_button">
+                    <p>
+                        <button type="button" class="input_button">
+                            <a href="{% url 'reviews:create_review' %}">Créer une critique</a>
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% comment %}
+        Display feed.
+    {% endcomment %}
+    {% if posts|length > 0 %}
+
+        {% for post in posts %}
+            {% if post.content_type == 'TICKET' %}
+                {% include 'reviews/ticket_snippet.html' with post=post %}
+            {% elif post.content_type == 'REVIEW' %}
+                {% include 'reviews/review_snippet.html' with post=post %}
+            {% endif %}
+        {% endfor %}
+
+    {% else %}
+
+        <div class="information">
+            <p>Aucune critique ou ticket n'a été publié par les personnes que vous suivez.</p>
+        </div>
+
+    {% endif %}
+
+{% endblock %}
+
+{% block footer %}
+    {% if posts|length > 0 %}
+        <!-- Footer-->
+        <div class="footer">
+            <div class="footer-text">
+                <p>
+                    Copyright &copy; LITReview 2022
+                </p>
+            </div>
+        </div>
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}
