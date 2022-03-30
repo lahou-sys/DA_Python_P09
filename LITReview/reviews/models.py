@@ -1,5 +1,5 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.conf import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
@@ -41,8 +41,8 @@ class UserFollows(models.Model):
         to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='followed_by')
+
     class Meta:
         # Ensures we don't get multiple UserFollows instances
         # for unique user-user_followed pairs
         unique_together = ('user', 'followed_user', )
-

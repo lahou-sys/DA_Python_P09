@@ -1,41 +1,21 @@
 from itertools import chain
 
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.shortcuts import redirect, render
 
-from .forms import (
-    ConnectionForm,
-    RegistrationForm,
-    CreateReviewForm,
-    CreateTicketForm,
-    SubscriptionForm)
-from .utils import (
-    get_user_by_id,
-    get_user_by_name,
-    get_users_by_name,
-    get_users_subscriber,
-    get_followed_users,
-    get_users_viewable_reviews,
-    get_users_viewable_tickets,
-    get_followed_users_viewable_reviews,
-    get_followed_users_viewable_tickets,
-    get_ticket_by_pk,
-    get_review_by_pk,
-    get_all_reviews,
-    save_ticket,
-    save_updated_ticket,
-    delete_ticket,
-    save_review,
-    save_updated_review,
-    delete_review,
-    save_subscribtion,
-    delete_subscribtion,
-    username_exists,
-    check_password_confirmation
-)
-
+from .forms import (ConnectionForm, CreateReviewForm, CreateTicketForm,
+                    RegistrationForm, SubscriptionForm)
+from .utils import (check_password_confirmation, delete_review,
+                    delete_subscribtion, delete_ticket, get_all_reviews,
+                    get_followed_users, get_followed_users_viewable_reviews,
+                    get_followed_users_viewable_tickets, get_review_by_pk,
+                    get_ticket_by_pk, get_user_by_id, get_user_by_name,
+                    get_users_by_name, get_users_subscriber,
+                    get_users_viewable_reviews, get_users_viewable_tickets,
+                    save_review, save_subscribtion, save_ticket,
+                    save_updated_review, save_updated_ticket, username_exists)
 
 
 # Home page
@@ -48,7 +28,7 @@ def get_connection_data(request):
         # Check whether it's valid:
         if form.is_valid():
             user = authenticate(
-                    username=form.cleaned_data['username'],
+                    username=form.cleaned_data['username'].lower(),
                     password=form.cleaned_data['password'])
             if user:
                 login(request, user)
@@ -75,6 +55,7 @@ def get_registration_data(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
+            username = username.lower()
             # If the username is not already used
             if not username_exists(username):
                 # Check if the password has been correctly set twice
@@ -118,11 +99,8 @@ def feed(request):
                 ticket.already_reviewed = True
                 # Check also if this ticket has
                 # been review by not followed user
-                if (review.user
-                    not in followed_users
-                    and not review.user == request.user):
-                        reviews = list(chain(reviews,
-                                             get_review_by_pk(review.id)))
+                if (review.user not in followed_users and not review.user == request.user):
+                    reviews = list(chain(reviews, get_review_by_pk(review.id)))
                 break
     # Combine and sort the two types of posts
     posts = sorted(
@@ -141,10 +119,7 @@ def feed(request):
         elif message_to_display == 'save_new_review':
             context['message'] = 'save_new_review'
         del request.session['message_to_display']
-    return render(
-                request,
-                'reviews/feed.html',
-                context=context)
+    return render(request, 'reviews/feed.html', context=context)
 
 
 @login_required(login_url='reviews:home_page')
@@ -174,10 +149,7 @@ def create_review(request, ticket=None):
             request.session['message_to_display'] = 'save_new_review'
             return redirect('reviews:feed')
         else:
-            return render(
-                        request,
-                        'reviews/create_review.html',
-                        {'form': form})
+            return render(request, 'reviews/create_review.html', {'form': form})
     # If a GET (or any other method) we'll create a blank form
     else:
         # Check if this request come from a response to a ticket
@@ -193,10 +165,7 @@ def create_review(request, ticket=None):
         context = {}
         context['form'] = form
         context['ticket'] = ticket
-        return render(
-                    request,
-                    'reviews/create_review.html',
-                    context=context)
+        return render(request, 'reviews/create_review.html', context=context)
 
 
 @login_required(login_url='reviews:home_page')
@@ -261,10 +230,7 @@ def posts(request):
             context['ticket_pk'] = pk
             if bool(ticket.image):
                 context['display_image'] = ticket.image.url
-            return render(
-                request,
-                'reviews/update_ticket.html',
-                context=context)
+            return render(request, 'reviews/update_ticket.html', context=context)
         # Or if its to update review
         elif 'review_pk' in request.POST:
             pk = request.POST.get('review_pk')
@@ -286,10 +252,7 @@ def posts(request):
             # Check if the review.ticket shall be update or only dispayed
             if not request.user == review.user:
                 context['display_ticket'] = True
-            return render(
-                        request,
-                        'reviews/update_review.html',
-                        context=context)
+            return render(request, 'reviews/update_review.html', context=context)
         return redirect('reviews:posts')
     # If a GET (or any other method) we'll create the posts page
     else:
@@ -312,10 +275,7 @@ def posts(request):
         if message_to_display:
             context['message_to_display'] = message_to_display
             del request.session['message_to_display']
-        return render(
-                    request,
-                    'reviews/posts.html',
-                    context=context)
+        return render(request, 'reviews/posts.html', context=context)
 
 
 @login_required(login_url='reviews:home_page')
@@ -461,10 +421,7 @@ def subscription(request):
     if message_to_display:
         context['message_to_display'] = message_to_display
         del request.session['message_to_display']
-    return render(
-                request,
-                'reviews/subscription.html',
-                context=context)
+    return render(request, 'reviews/subscription.html', context=context)
 
 
 # Disconnection
